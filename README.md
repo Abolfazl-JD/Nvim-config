@@ -2,6 +2,8 @@
 
 🔧 1. Install Meslo LG L DZ Nerd Font
 
+
+
 🍺 2. Install Homebrew
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -13,24 +15,34 @@ source ~/.bashrc
 
 sudo apt-get install build-essential
 
+
+
 🔎 3. Install Ripgrep
 
 brew install ripgrep
+
+
 
 🌲 4. Install Tree
 
 sudo apt-get install tree
 tree
 
+
+
 🌀 5. Install LazyGit
 
 brew install jesseduffield/lazygit/lazygit
+
+
 
 🚀 6. Install Neovim
 
 brew install neovim
 
 nvim --version
+
+
 
 ⚙️ 7. Clone Neovim Configuration
 
