@@ -8,18 +8,12 @@ To ensure you have proper icon rendering in Neovim, install the Meslo LG L DZ Ne
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-✅ Verify the installation:
-
 brew --version
-
-💡 Add Homebrew to your shell configuration:
 
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
 source ~/.bashrc
 
-sudo proxychains apt-get install build-essential
+sudo apt-get install build-essential
 
 🔎 3. Install Ripgrep
 
@@ -41,11 +35,7 @@ brew install jesseduffield/lazygit/lazygit
 
 🚀 6. Install Neovim
 
-Install Neovim using Homebrew :
-
 proxychains brew install neovim
-
-✅ Check if Neovim is installed:
 
 nvim --version
 
