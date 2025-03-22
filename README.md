@@ -2,8 +2,6 @@
 
 🔧 1. Install Meslo LG L DZ Nerd Font
 
-To ensure you have proper icon rendering in Neovim, install the Meslo LG L DZ Nerd Font:
-
 🍺 2. Install Homebrew
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -22,20 +20,15 @@ brew install ripgrep
 🌲 4. Install Tree
 
 sudo apt-get install tree
-
-✅ Check if it’s installed:
-
 tree
 
 🌀 5. Install LazyGit
-
-Install it with:
 
 brew install jesseduffield/lazygit/lazygit
 
 🚀 6. Install Neovim
 
-proxychains brew install neovim
+brew install neovim
 
 nvim --version
 
