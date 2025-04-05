@@ -56,3 +56,5 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "term://*",
 	command = "startinsert",
 })
+
+keymap.set("n", "<leader><leader>", "<cmd>w<CR>", { desc = "Save file" }) -- close current tab
