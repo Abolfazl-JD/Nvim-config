@@ -41,7 +41,12 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<CR>"] = cmp.mapping.confirm({ select = false }),
+				["<CR>"] = cmp.mapping(function()
+					--undo point
+					vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, false, true))
+					vim.fn.feedkeys(vim.api.nvim_replace_termcodes("u", true, false, true))
+					cmp.confirm({ select = true })
+				end),
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
