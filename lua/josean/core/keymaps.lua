@@ -38,7 +38,7 @@ vim.keymap.set("n", "<leader>t", function()
 		term_win_id = nil
 	else
 		vim.cmd("vsplit | terminal")
-		vim.cmd("vertical resize 60")
+		vim.cmd("vertical resize 80")
 		vim.cmd("startinsert")
 
 		term_win_id = vim.api.nvim_get_current_win()
