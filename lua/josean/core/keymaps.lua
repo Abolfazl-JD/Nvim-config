@@ -27,6 +27,52 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
+--normal mode enter
+vim.keymap.set("n", "<leader><cr>", [[i<cr><esc>]])
+
+--clipboard
+vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
+vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
+
+--previous buffer
+vim.keymap.set("n", "<leader>b", "<c-^>")
+
+--duplicate line
+vim.keymap.set("n", "<leader>a", "yyp")
+
+--undo redo
+vim.keymap.set("n", "U", "<c-r>")
+
+--new line noraml mode
+vim.keymap.set("n", "<leader>o", "o<esc>")
+vim.keymap.set("n", "<leader>O", "O<esc>")
+
+--move in insert mode
+vim.keymap.set("i", "<A-l>", "<C-o>l")
+vim.keymap.set("i", "<A-j>", "<C-o>j")
+vim.keymap.set("i", "<A-k>", "<C-o>k")
+vim.keymap.set("i", "<A-h>", "<C-o>h")
+
+--center page up / down / next / prev
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+--better end of line
+vim.keymap.set("n", ")", "$")
+vim.keymap.set("v", ")", "$")
+
+--visual move line
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+
+--append line below to this line
+vim.keymap.set("n", "J", "mzJ`z")
+
 -- terminal
 local terminal_open = false
 local term_win_id = nil
@@ -57,4 +103,27 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	command = "startinsert",
 })
 
-keymap.set("n", "<leader><leader>", "<cmd>w<CR>", { desc = "Save file" }) -- close current tab
+keymap.set("n", "<leader><leader>", "<cmd>w<CR>", { desc = "Save file" }) -- save
+
+-- create note file
+vim.keymap.set("n", "<leader>0", function()
+	while vim.fn.winnr() ~= 1 do
+		vim.cmd("wincmd h")
+	end
+	if vim.fn.bufname() == "/home/mads/myNvimCheatSheat.txt" then
+		vim.cmd("close")
+		return
+	end
+	vim.cmd("50 vsplit")
+	vim.cmd("e ~/myNvimCheatSheat.txt")
+end)
+
+--fix width
+vim.keymap.set("n", "<leader>w", function()
+	local size = vim.v.count -- Get the number before <leader>w
+	if size > 0 then
+		vim.cmd("vertical resize " .. size)
+	else
+		vim.cmd("vertical resize 40") -- Default width if no number is provided
+	end
+end, { silent = true })
