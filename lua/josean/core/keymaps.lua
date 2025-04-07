@@ -46,7 +46,7 @@ vim.keymap.set("n", "<leader>a", "yyp")
 --undo redo
 vim.keymap.set("n", "U", "<c-r>")
 
---new line noraml mode
+--new line normal mode
 vim.keymap.set("n", "<leader>o", "o<esc>")
 vim.keymap.set("n", "<leader>O", "O<esc>")
 
