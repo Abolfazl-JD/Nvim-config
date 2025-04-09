@@ -13,6 +13,11 @@ return {
       highlight NvimTreeOpenedFolderName guifg=#d55fde " Purple for opened folders
     ]])
 		nvimtree.setup({
+			update_focused_file = {
+				enable = true, -- this enables the sync
+				update_root = false, -- set to true if you want root folder to auto-follow file
+				ignore_list = {},
+			},
 			view = {
 				width = 35,
 				relativenumber = true,
