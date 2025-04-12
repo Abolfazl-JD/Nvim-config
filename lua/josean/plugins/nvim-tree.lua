@@ -15,7 +15,7 @@ return {
 		nvimtree.setup({
 			update_focused_file = {
 				enable = true, -- this enables the sync
-				update_root = false, -- set to true if you want root folder to auto-follow file
+				update_root = false,
 				ignore_list = {},
 			},
 			view = {
