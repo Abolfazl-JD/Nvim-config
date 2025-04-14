@@ -91,8 +91,14 @@ vim.keymap.set("n", "<leader>t", function()
 		terminal_open = true
 	end
 end, { desc = "Toggle terminal on the right" }) -- Better terminal navigation
-
-vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]]) -- Move left from terminal
+-- Hide terminal without exiting the shell
+vim.keymap.set("t", "<C-h>", function()
+	if terminal_open and term_win_id and vim.api.nvim_win_is_valid(term_win_id) then
+		vim.api.nvim_win_close(term_win_id, true)
+		terminal_open = false
+		term_win_id = nil
+	end
+end, { desc = "Hide terminal without exiting shell" })
 vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]]) -- Move right from terminal
 vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]]) -- Move down from terminal
 vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]]) -- Move up from terminal
