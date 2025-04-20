@@ -5,9 +5,6 @@ local keymap = vim.keymap -- for conciseness
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
--- use usual ctrl + v to paste
-vim.keymap.set("i", "<leader>p", "<C-r>+", { desc = "Paste from clipboard in insert mode" })
-
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
@@ -76,6 +73,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- terminal
 local terminal_open = false
 local term_win_id = nil
+local term_bufnr = nil
 
 vim.keymap.set("n", "<leader>t", function()
 	if terminal_open and term_win_id and vim.api.nvim_win_is_valid(term_win_id) then
@@ -83,14 +81,23 @@ vim.keymap.set("n", "<leader>t", function()
 		terminal_open = false
 		term_win_id = nil
 	else
-		vim.cmd("vsplit | terminal")
-		vim.cmd("vertical resize 80")
-		vim.cmd("startinsert")
+		if term_bufnr and vim.api.nvim_buf_is_valid(term_bufnr) then
+			-- Reuse the existing terminal buffer
+			vim.cmd("vsplit")
+			vim.cmd("vertical resize 80")
+			vim.api.nvim_win_set_buf(0, term_bufnr)
+		else
+			-- Create a new terminal buffer
+			vim.cmd("vsplit | terminal")
+			term_bufnr = vim.api.nvim_get_current_buf()
+			vim.cmd("vertical resize 80")
+		end
 
+		vim.cmd("startinsert")
 		term_win_id = vim.api.nvim_get_current_win()
 		terminal_open = true
 	end
-end, { desc = "Toggle terminal on the right" }) -- Better terminal navigation
+end, { desc = "Toggle terminal on the right" })
 -- Hide terminal without exiting the shell
 vim.keymap.set("t", "<C-h>", function()
 	if terminal_open and term_win_id and vim.api.nvim_win_is_valid(term_win_id) then
